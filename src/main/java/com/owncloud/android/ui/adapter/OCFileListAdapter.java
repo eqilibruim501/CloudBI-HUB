@@ -253,7 +253,10 @@ public class OCFileListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         int filesSize = mFiles.size();
         for (int i = 0; i < filesSize; i++) {
             if (mFiles.get(i).getRemoteId().equals(fileId)) {
-                mFiles.get(i).setEncrypted(encrypted);
+                OCFile file = mFiles.get(i);
+                file.setEncrypted(encrypted);
+                mStorageManager.saveFile(file);
+
                 break;
             }
         }
@@ -549,7 +552,7 @@ public class OCFileListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             if (holder instanceof OCFileListGridItemViewHolder) {
                 OCFileListGridItemViewHolder gridItemViewHolder = (OCFileListGridItemViewHolder) holder;
 
-                gridItemViewHolder.fileName.setText(file.getFileName());
+                gridItemViewHolder.fileName.setText(file.getDecryptedFileName());
 
                 if (gridView && gridImage) {
                     gridItemViewHolder.fileName.setVisibility(View.GONE);

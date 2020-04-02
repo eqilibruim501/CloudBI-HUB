@@ -185,7 +185,7 @@ class ContactsBackupWork(
                     val service = Intent(applicationContext, OperationsService::class.java)
                     service.action = OperationsService.ACTION_REMOVE
                     service.putExtra(OperationsService.EXTRA_ACCOUNT, account)
-                    service.putExtra(OperationsService.EXTRA_REMOTE_PATH, backup.remotePath)
+                    service.putExtra(OperationsService.EXTRA_FILE, backup)
                     service.putExtra(OperationsService.EXTRA_REMOVE_ONLY_LOCAL, false)
                     operationsServiceBinder!!.queueNewOperation(service)
                 }

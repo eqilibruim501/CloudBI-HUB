@@ -93,7 +93,7 @@ class OCFileListFragmentIT : AbstractIT() {
 
     @Test
     fun showRichWorkspace() {
-        assertTrue(CreateFolderOperation("/test/", true).execute(client, storageManager).isSuccess)
+        assertTrue(CreateFolderOperation("/test/", account, targetContext).execute(client, storageManager).isSuccess)
 
         val ocUpload = OCUpload(FileStorageUtils.getSavePath(account.name) + "/nonEmpty.txt",
             "/test/Readme.md",
@@ -161,7 +161,9 @@ class OCFileListFragmentIT : AbstractIT() {
     @Test
     fun createAndShowShareToUser() {
         val path = "/shareToAdmin/"
-        TestCase.assertTrue(CreateFolderOperation(path, true).execute(client, storageManager).isSuccess)
+        TestCase.assertTrue(CreateFolderOperation(path, account, targetContext)
+            .execute(client, storageManager)
+            .isSuccess)
 
         // share folder to user "admin"
         TestCase.assertTrue(CreateShareRemoteOperation(path,
@@ -183,7 +185,9 @@ class OCFileListFragmentIT : AbstractIT() {
     @Test
     fun createAndShowShareToGroup() {
         val path = "/shareToGroup/"
-        TestCase.assertTrue(CreateFolderOperation(path, true).execute(client, storageManager).isSuccess)
+        TestCase.assertTrue(CreateFolderOperation(path, account, targetContext)
+            .execute(client, storageManager)
+            .isSuccess)
 
         // share folder to group
         assertTrue(CreateShareRemoteOperation("/shareToGroup/",
@@ -205,7 +209,9 @@ class OCFileListFragmentIT : AbstractIT() {
     @Test
     fun createAndShowShareToCircle() {
         val path = "/shareToCircle/"
-        TestCase.assertTrue(CreateFolderOperation(path, true).execute(client, storageManager).isSuccess)
+        TestCase.assertTrue(CreateFolderOperation(path, account, targetContext)
+            .execute(client, storageManager)
+            .isSuccess)
 
         // share folder to circle
         // get circleId
@@ -234,7 +240,9 @@ class OCFileListFragmentIT : AbstractIT() {
     @Test
     fun createAndShowShareViaLink() {
         val path = "/shareViaLink/"
-        TestCase.assertTrue(CreateFolderOperation(path, true).execute(client, storageManager).isSuccess)
+        TestCase.assertTrue(CreateFolderOperation(path, account, targetContext)
+            .execute(client, storageManager)
+            .isSuccess)
 
         // share folder via public link
         TestCase.assertTrue(CreateShareRemoteOperation("/shareViaLink/",
