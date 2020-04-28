@@ -40,6 +40,7 @@ import com.owncloud.android.lib.resources.shares.ShareType;
 import com.owncloud.android.operations.CreateFolderOperation;
 import com.owncloud.android.ui.activity.FileDisplayActivity;
 import com.owncloud.android.ui.events.SearchEvent;
+import com.owncloud.android.utils.ScreenshotTest;
 
 import org.greenrobot.eventbus.EventBus;
 import org.json.JSONException;
@@ -60,7 +61,6 @@ import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentat
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
 
-
 public class FileDisplayActivityIT extends AbstractIT {
     @Rule public IntentsTestRule<FileDisplayActivity> activityRule = new IntentsTestRule<>(FileDisplayActivity.class,
                                                                                            true,
@@ -71,6 +71,7 @@ public class FileDisplayActivityIT extends AbstractIT {
         Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
     @Test
+    @ScreenshotTest
     public void open() {
         Activity sut = activityRule.launchActivity(null);
 
@@ -80,15 +81,19 @@ public class FileDisplayActivityIT extends AbstractIT {
     }
 
     @Test
+    @ScreenshotTest
     public void drawer() {
         Activity sut = activityRule.launchActivity(null);
 
         onView(withId(R.id.drawer_layout)).perform(DrawerActions.open());
 
+        waitForIdleSync();
+
         Screenshot.snapActivity(sut).record();
     }
 
     @Test
+    @ScreenshotTest
     public void showShares() throws JSONException {
         assertTrue(new ExistenceCheckRemoteOperation("/shareToAdmin/", true).execute(client).isSuccess());
         assertTrue(new CreateFolderRemoteOperation("/shareToAdmin/", true).execute(client).isSuccess());
@@ -152,6 +157,7 @@ public class FileDisplayActivityIT extends AbstractIT {
     }
 
     @Test
+    @ScreenshotTest
     public void showAccounts() {
         Activity sut = activityRule.launchActivity(null);
 
