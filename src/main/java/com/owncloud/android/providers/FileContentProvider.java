@@ -792,7 +792,8 @@ public class FileContentProvider extends ContentProvider {
                        + ProviderTableMeta.CAPABILITIES_RICHDOCUMENT_OPTIONAL_MIMETYPE_LIST + TEXT
                        + ProviderTableMeta.CAPABILITIES_SHARING_PUBLIC_ASK_FOR_OPTIONAL_PASSWORD + INTEGER
                        + ProviderTableMeta.CAPABILITIES_RICHDOCUMENT_PRODUCT_NAME + TEXT
-                       + ProviderTableMeta.CAPABILITIES_DIRECT_EDITING_ETAG + " TEXT );");
+                       + ProviderTableMeta.CAPABILITIES_DIRECT_EDITING_ETAG + TEXT
+                       + ProviderTableMeta.CAPABILITIES_ETAG + " TEXT );");
     }
 
     private void createUploadsTable(SQLiteDatabase db) {
@@ -2183,6 +2184,24 @@ public class FileContentProvider extends ContentProvider {
                     db.execSQL("UPDATE " + ProviderTableMeta.SYNCED_FOLDERS_TABLE_NAME + " SET " +
                                    ProviderTableMeta.SYNCED_FOLDER_NAME_COLLISION_POLICY + " = " +
                                    FileUploader.NameCollisionPolicy.ASK_USER.serialize());
+                    upgraded = true;
+                    db.setTransactionSuccessful();
+                } finally {
+                    db.endTransaction();
+                }
+            }
+
+            if (!upgraded) {
+                Log_OC.i(SQL, String.format(Locale.ENGLISH, UPGRADE_VERSION_MSG, oldVersion, newVersion));
+            }
+
+            if (oldVersion < 56 && newVersion >= 56) {
+                Log_OC.i(SQL, "Entering in the #56 add etag for capabilities");
+                db.beginTransaction();
+                try {
+                    db.execSQL(ALTER_TABLE + ProviderTableMeta.CAPABILITIES_TABLE_NAME +
+                                   ADD_COLUMN + ProviderTableMeta.CAPABILITIES_ETAG + " TEXT ");
+
                     upgraded = true;
                     db.setTransactionSuccessful();
                 } finally {
