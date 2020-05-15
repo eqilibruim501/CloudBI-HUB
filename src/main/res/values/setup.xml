@@ -5,7 +5,7 @@
     <bool name="dev_version_direct_download_enabled">false</bool>
 
     <!-- App name  and other strings-->
-    <string name="app_name">Nextcloud</string>
+    <string name="app_name">CloudBI HUB</string>
     <string name="account_type">nextcloud</string>     <!-- better if was a domain name; but changing it now would require migrate accounts when the app is updated -->
     <string name="authority">org.nextcloud</string>    <!-- better if was the app package with ".provider" appended ; it identifies the provider -->
     <string name="users_and_groups_search_authority">com.nextcloud.android.providers.UsersAndGroupsSearchProvider</string>
@@ -16,7 +16,7 @@
     <string name="db_file">nextcloud.db</string>
     <string name="db_name">nextcloud</string>
     <string name="data_folder">nextcloud</string>
-    <string name="default_display_name_for_root_folder">Nextcloud</string>
+    <string name="default_display_name_for_root_folder">CloudBI_HUB</string>
     <string name="nextcloud_user_agent">Mozilla/5.0 (Android) Nextcloud-android/%1$s</string>
     <string name="only_office_user_agent">Mozilla/5.0 (Android %1$s) Mobile Nextcloud-android/%2$s</string>
 
@@ -24,7 +24,7 @@
     <string name="server_url"></string>
     <bool name="show_server_url_input">true</bool>
     <bool name="show_provider_or_own_installation">true</bool>
-    <string name="provider_registration_server">https://www.nextcloud.com/register</string>
+    <string name="provider_registration_server">https://www.eqilibruimsolutions.com/contact</string>
 
     <!-- Flags to enable/disable some features -->
     <string name="send_files_to_other_apps">on</string>
@@ -44,8 +44,8 @@
     <array name="whatsnew_urls"></array>
 
     <!-- Colors -->
-    <color name="primary">#0082c9</color>
-    <color name="primary_dark">#006AA3</color>
+    <color name="primary">#026ced</color>
+    <color name="primary_dark">#0b65bf</color>
     <color name="color_accent">#007cc2</color>
     <color name="login_text_color">#ffffff</color>
     <color name="login_text_hint_color">#7fC0E3</color>
@@ -57,8 +57,8 @@
     <bool name="recently_added_enabled">false</bool>
     <bool name="recently_modified_enabled">false</bool>
     <bool name="shared_enabled">true</bool>
-    <bool name="videos_enabled">false</bool>
-    <bool name="show_drawer_logout">false</bool>
+    <bool name="videos_enabled">true</bool>
+    <bool name="show_drawer_logout">true</bool>
     <bool name="show_drawer_contacts_backup">false</bool> <!-- if false it will shown in settings -->
 
     <!-- Various other options -->
@@ -70,7 +70,7 @@
     <bool name="show_hidden_files_enabled">true</bool>
     <bool name="davdroid_integration_enabled">true</bool>
     <bool name="help_enabled">true</bool>
-    <string name="url_help">https://help.nextcloud.com/c/feature</string>
+    <string name="url_help">https://www.eqilibruimsolutions.com/contact</string>
     <bool name="privacy_enabled">true</bool>
     <string name="privacy_url">https://nextcloud.com/privacy</string>
     <bool name="imprint_enabled">false</bool>
@@ -127,5 +127,3 @@
 
     <string name="buildNumber" translatable="false"></string>
 </resources>
-
-
